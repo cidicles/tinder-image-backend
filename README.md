@@ -1,6 +1,6 @@
 # Tinder Superlatives API
 
-The Tinder Superlatives API.
+This API allows for the uploading of an image and returns a styled image. 
 
 Contains:
 
@@ -16,6 +16,9 @@ Prereqs:
 
 #### Startup (Local)
 `npm run local`
+
+#### Example
+[![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/616d0b3ab4025ea47d8f)
 
 #### SSL
 
