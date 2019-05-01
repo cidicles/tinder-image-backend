@@ -74,14 +74,14 @@ async function getScreenshot(content) {
   await page.setContent(`
   <html>
     <head>
-    <link href="${process.contentenv.API_URL}style.css" rel="stylesheet" />
+    <link href="${process.env.API_URL}style.css" rel="stylesheet" />
     <head>
     <body style="background-color: #fff; padding: 0; margin:0; display: flex; align-items: center; justify-content: center;">
       <div class="photo-frame">
         <div class="photo-frame__mask">
           <img class="${content.orientationclass} photo-frame__pic--portrait photo-frame__pic" src="${content.img}" alt="Most likely to">
         </div>
-        <img class="photo-frame__flame" src="${process.contentenv.API_URL}flame.png" alt="Tinder">
+        <img class="photo-frame__flame" src="${process.env.API_URL}flame.png" alt="Tinder">
         <h3>Most likely to</h3>
         <h2>${content.text}</h2>
       </div>
@@ -108,12 +108,12 @@ app.post('/api/upload', upload.single('superlative'), (req, res) => {
     });
 
   } else {
-    const img = `${process.contentenv.API_URL}${req.file.destination.split('/').slice(-1).join('/')}/${req.file.filename}`;
+    const img = `${process.env.API_URL}${req.file.destination.split('/').slice(-1).join('/')}/${req.file.filename}`;
     const uuid = uuidv1();
     const dir = `${__dirname}/superlative/${uuid}`;
     const filename = `${changeCase.snakeCase(req.body.text)}.png`;
     const dest = `${dir}/${filename}`;
-    const url = `${process.contentenv.API_URL}${uuid}/${filename}`;
+    const url = `${process.env.API_URL}${uuid}/${filename}`;
 
     getScreenshot({
       img,
@@ -135,7 +135,6 @@ app.post('/api/upload', upload.single('superlative'), (req, res) => {
     });
   }
 });
-
 
 app.use(function(req, res) {
   res.status(404).send({error: req.originalUrl + ' not found'})
