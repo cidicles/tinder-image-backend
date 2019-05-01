@@ -14,6 +14,10 @@ const morgan = require('morgan');
 const multer = require('multer');
 const crypto = require('crypto');
 const changeCase = require('change-case')
+const env = require('node-env-file');
+
+// Add ENV
+env(__dirname + '/.env');
 
 // Enable Body
 app.use(bodyParser.json());
@@ -70,20 +74,20 @@ async function getScreenshot(content) {
   await page.setContent(`
   <html>
     <head>
-    <link href="http://localhost:1337/style.css" rel="stylesheet" />
+    <link href="${process.contentenv.API_URL}style.css" rel="stylesheet" />
     <head>
     <body style="background-color: #fff; padding: 0; margin:0; display: flex; align-items: center; justify-content: center;">
       <div class="photo-frame">
         <div class="photo-frame__mask">
           <img class="${content.orientationclass} photo-frame__pic--portrait photo-frame__pic" src="${content.img}" alt="Most likely to">
         </div>
-        <img class="photo-frame__flame" src="http://localhost:1337/flame.png" alt="Tinder">
+        <img class="photo-frame__flame" src="${process.contentenv.API_URL}flame.png" alt="Tinder">
         <h3>Most likely to</h3>
         <h2>${content.text}</h2>
       </div>
     </body>
   </html>
-  `);// TODO: base domain / protocol
+  `);
 
   await page.setViewport({
     width: 350, 
@@ -104,12 +108,12 @@ app.post('/api/upload', upload.single('superlative'), (req, res) => {
     });
 
   } else {
-    const img = `http://localhost:1337/${req.file.destination.split('/').slice(-1).join('/')}/${req.file.filename}`; // TODO: base domain / protocol
+    const img = `${process.contentenv.API_URL}${req.file.destination.split('/').slice(-1).join('/')}/${req.file.filename}`;
     const uuid = uuidv1();
     const dir = `${__dirname}/superlative/${uuid}`;
     const filename = `${changeCase.snakeCase(req.body.text)}.png`;
     const dest = `${dir}/${filename}`;
-    const url = `http://localhost:1337/${uuid}/${filename}`; // TODO: base domain / protocol
+    const url = `${process.contentenv.API_URL}${uuid}/${filename}`;
 
     getScreenshot({
       img,
