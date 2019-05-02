@@ -142,9 +142,4 @@ app.use(function(req, res) {
 
 http.createServer(app).listen(port);
 //https.createServer(options, app).listen(443); // SSL
-
-// Because
-const because = require('./because');
-because(() => {
-  console.log(`api started on: ${ port }`);
-});
+console.log(`api started on: ${ port }`);
