@@ -65,7 +65,7 @@ const upload = multer({ storage: storage });
 // Render Image 
 async function getScreenshot(content) {
   const browser = await puppeteer.launch({
-    headless: false,
+    headless: true,
     args: ['--no-sandbox','--disable-web-security','--disable-gpu', '--hide-scrollbars', '--disable-setuid-sandbox']
   });
 
