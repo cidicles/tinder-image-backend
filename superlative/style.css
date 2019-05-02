@@ -1,5 +1,5 @@
 @import url("https://use.typekit.net/eok7hoj.css");
-
+@import url('https://fonts.googleapis.com/css?family=Shrikhand');
 * {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -16,9 +16,10 @@ body {
     text-align: center;
     min-height: 100vh;
     font-weight: 400;
- }
+    font-family: proxima-nova, sans-serif; }
 
 h1 {
+    font-family: "Shrikhand", cursive;
     color: #fff;
     font-weight: 400;
     text-transform: uppercase;
@@ -33,6 +34,7 @@ h2, h3 {
     padding: 0;
     text-transform: uppercase;
     color: #000;
+    font-family: proxima-nova, sans-serif;
     font-weight: 400; }
 
 h2 {
@@ -96,6 +98,7 @@ h3 {
     margin: 0;
     background: #FC267D;
     color: #fff;
+    font-family: proxima-nova, sans-serif;
     transition: background 0.4s;
     cursor: pointer; }
     .btn:hover {
