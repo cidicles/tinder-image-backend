@@ -94,7 +94,6 @@ async function getScreenshot(content) {
     height: 500
   });
   await page.content();
-  await page.evaluateHandle('document.fonts.ready');
   await page.screenshot({
     path: content.dest
   });
